@@ -1,10 +1,10 @@
 //This program is to implement hard-coded binary counter upto Fifteen(1111) using 4 LED's.
 
 //Intialize all LED's (in this project we will be using 4) according to pin they are using.
-int led1 = 3;
-int led2 = 4;
-int led3 = 5;
-int led4 = 6;
+int led1 = 3;   //Port 3
+int led2 = 4;   //Port 4
+int led3 = 5;   //Port 5
+int led4 = 6;   //Port 6
 //To implement delay
 int wait = 1500;
 
