@@ -9,7 +9,6 @@ int led4 = 6;   //Port 6
 int wait = 1500;
 
 void setup() {
-  // put your setup code here, to run once:
   pinMode(led1,OUTPUT);
   pinMode(led2,OUTPUT);
   pinMode(led3,OUTPUT);
@@ -17,7 +16,6 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   
   //To implement Binary Zero(0000)
   digitalWrite(led1,LOW);
