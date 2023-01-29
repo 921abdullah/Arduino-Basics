@@ -1,0 +1,50 @@
+//HC-SR04 is an ultrasonic sensor which is used to calculate distance of an object from the sensor using sonar, it can accurately detect objects upto 4 meters(13 feet)
+//This sensor consists oof 4 pins in total namely, VCC, trig, echo and GND.
+//This sensor can be mounted and used for making robotics projects as well as in other applications where there is such a requirement.
+
+//Variables specifying pin numbers of arduino associated with trig and echo pins of the sensor.
+const int trig = 8;
+const int echo = 9;
+//delay variable
+int wait = 10;
+//variables for calculting time and distance
+long distance;
+int time;
+
+void setup() {
+  // trig pin is output pin as it emits ultrasonic waves from the sensor.
+  pinMode(trig, OUTPUT);
+  // echo pin is input pin as it detects ultrasonic waves which are bounced back towards the sensor.
+  pinMode(echo, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  // make sure trig is low at first to avoid previous data from intefering
+  digitalWrite(trig, LOW);
+  delay(wait);
+  
+  //make the pin HIGH and emit pulse for 10 microseconds by adding delay , since this is the time it takes for the senosr to emit full 8 cycle sonicburst.
+  digitalWrite(trig, HIGH);
+  delay(wait);
+  
+  //bring the pin back to low state to ensure a single reading is made at a time.
+  digitalWrite(trig, LOW);
+  
+  // pulseIn function is used to calculate time traveled by the sound wave with the help of echo pin, it has two parameters, the second parameter can be both HIGH/LOW
+  // In this case we want second parameter to be HIGH since it needs to be made HIGH when the sound waves reach the sensor after bouncing back and remain high till
+  // all of the sound wave has reached the sensor, in which case it will go LOW again
+  time = pulseIn(echo, HIGH);
+  
+  //the actual distance of obstacle from the sensor will be half of distance travelled by sound wave
+  //speed of sound is 0.034 cm/microsecond
+  // s = (t * v)/2
+  distance = time * 0.034 /2;
+  Serial.print("Distance: ");
+  Serial.println(distance);
+  
+  // The code below can be added to study each sound wave emitted and the distance of the object from the sensor w.r,t that sound wave, individually
+  // delay(5000);
+  // Serial.println("next Iteration ");
+  // delay(2000);
+}
